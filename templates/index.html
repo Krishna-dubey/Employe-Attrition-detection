@@ -1,0 +1,90 @@
+{% extends 'layouts.html' %}
+{% block body %}
+<div class="container">
+    <form name="myForm" action="/predict_page" method="POST" onsubmit="return validateForm()">
+        <label> TotalWorkingYears</label>
+        <input type="text" name="TotalWorkingYears" placeholder="5" required>
+
+        <label> YearsAtCompany</label>
+        <input type="text" name="YearsAtCompany" placeholder="2" required>
+
+        <label> YearsInCurrentRole</label>
+        <input type="text" name="YearsInCurrentRole" placeholder="2" required>
+
+        <label> YearsWithCurrManager</label>
+        <input type="text" name="YearsWithCurrManager" placeholder="2" required>
+
+        <label> Age</label>
+        <input type="text" name="Age" placeholder="25" required>
+
+        <label> Job Level</label>
+        <select name="JobLevel">
+          <option value="1">very Low</option>
+          <option value="2">low</option>
+          <option value="3">medium</option>
+          <option value="4">high</option>
+          <option value="5">very high</option>
+        </select>
+
+        <label> Marital Status</label>
+        <select name="MaritalStatus">
+          <option value="0">Divorced</option>
+          <option value="1">Married</option>
+          <option value="2">Single</option>
+        </select>
+
+        <label> OverTime </label>
+        <select name="OverTime">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      <input type="submit" value="Predict" class="btn">
+    </form>
+</div>
+<script>
+  function validateForm() {
+    var TotalWorkingYears, YearsAtCompany, YearsWithCurrManager, YearsInCurrentRole,Age;
+    TotalWorkingYears = document.forms["myForm"]["TotalWorkingYears"].value;
+    YearsAtCompany = document.forms["myForm"]["YearsAtCompany"].value;
+    YearsWithCurrManager = document.forms["myForm"]["YearsWithCurrManager"].value;
+    YearsInCurrentRole = document.forms["myForm"]["YearsInCurrentRole"].value;
+    Age = document.forms["myForm"]["Age"].value;
+
+
+    console.log("Total="+TotalWorkingYears)
+    console.log("com="+YearsAtCompany)
+    console.log("man="+YearsWithCurrManager)
+    console.log("role="+YearsInCurrentRole)
+    console.log("Age="+Age)
+  
+    if (isNaN(TotalWorkingYears) || TotalWorkingYears < 1 || TotalWorkingYears> 50) {
+      alert("Total Working years must be numeric and between 1 to 50");
+      return false;
+    } else if(isNaN(YearsAtCompany)){
+      alert("Years At Company must be numeric");
+      return false;
+    }else if(parseInt(YearsAtCompany)>parseInt(TotalWorkingYears)){
+      alert("Years At Company must be less than or equal to Total Working Years");
+      return false;
+    }else if(isNaN(YearsWithCurrManager)){
+      alert("Years With Current Manager must be numeric");
+      return false;
+    }else if(parseInt(YearsWithCurrManager)>parseInt(YearsAtCompany)){
+      alert("Years With Current Manager must be less than or equal to Years At company");
+      return false;
+    }else if(isNaN(YearsInCurrentRole)){
+      alert("Years In Current Role must be numeric");
+      return false;
+    }else if(parseInt(YearsInCurrentRole)>parseInt(YearsAtCompany)){
+      alert("Years In Current Role must be less than or equal to Years At company");
+      return false;
+    }else if(parseInt(Age)>80 || parseInt(Age)<18){
+      alert("Age must be less than 80 or greater than 18");
+      return false;
+    }else{
+      return true;
+    }
+  }
+  </script>
+{% endblock %}
+

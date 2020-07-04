@@ -1,0 +1,14 @@
+{% extends 'layouts.html' %}
+{% block body %}
+<div class="result-container">
+    {% if prediction == 0 %}
+        <img src="{{url_for('static',filename='smile.png')}}" class="result-img">
+        <h2> "Hurray!!, No Attrition"</h2>
+    {%endif%}
+    {% if prediction == 1 %}
+        <img src="{{url_for('static',filename='sad.png')}}" class="result-img">
+        <h2> "Alert!!, your employee is suffering"</h2>
+    {%endif%}
+    
+</div>
+{% endblock %}
