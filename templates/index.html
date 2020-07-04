@@ -49,13 +49,6 @@
     YearsWithCurrManager = document.forms["myForm"]["YearsWithCurrManager"].value;
     YearsInCurrentRole = document.forms["myForm"]["YearsInCurrentRole"].value;
     Age = document.forms["myForm"]["Age"].value;
-
-
-    console.log("Total="+TotalWorkingYears)
-    console.log("com="+YearsAtCompany)
-    console.log("man="+YearsWithCurrManager)
-    console.log("role="+YearsInCurrentRole)
-    console.log("Age="+Age)
   
     if (isNaN(TotalWorkingYears) || TotalWorkingYears < 1 || TotalWorkingYears> 50) {
       alert("Total Working years must be numeric and between 1 to 50");
